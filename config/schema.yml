@@ -1,0 +1,118 @@
+propel:
+  _attributes:
+    package: lib.model
+    
+  sf_guard_user_profile:
+    _attributes: { idMethod: native, phpName: sfGuardUserProfile }    
+    sf_guard_user_profile_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true } 
+    user_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    name: { type: VARCHAR, size: '250', required: true }
+    lastname: { type: VARCHAR, size: '250', required: true}
+    lastname2: { type: VARCHAR, size: '250', required: true}
+    email: { type: VARCHAR, size: '100', required: true, default: unknown }
+ 
+  red_social:
+    _attributes:   { idMethod: native, phpName: RedSocial }
+    red_social_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    nombre: { type: VARCHAR, size: '250', required: true }
+    
+  anonimo:
+    _attributes:   { idMethod: native, phpName: Anonimo }
+    anonimo_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    nombre: { type: VARCHAR, size: '250', required: true }    
+    email: { type: VARCHAR, size: '250', required: true }    
+    created_at: { type: TIMESTAMP, required: false }
+    
+  blog:
+    _attributes:   { idMethod: native, phpName: Blog }
+    blog_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    nombre: { type: VARCHAR, size: '250', required: true }    
+    created_at: { type: TIMESTAMP, required: false }    
+    
+  mensaje:
+    _attributes:   { idMethod: native, phpName: Mensaje }
+    mensaje_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    destinatario_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    remitente_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    anonimo: { type: INTEGER, required: true, default:'0' }
+    asunto: { type: VARCHAR, size: '250', required: true }        
+    mensaje: { type: LONGVARCHAR }
+    send_at: { type: TIMESTAMP, required: false }    
+    created_at: { type: TIMESTAMP, required: false }    
+    
+  respuesta_mensaje:
+    _attributes:   { idMethod: native, phpName: RespuestaMensaje }
+    respuesta_mensaje_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    mensaje_id: { type: INTEGER, required: true, foreignTable: mensaje, foreignReference: mensaje_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    cuerpo: { type: LONGVARCHAR }  
+    created_at: { type: TIMESTAMP, required: false }    
+    
+  tematica:
+    _attributes:   { idMethod: native, phpName: Tematica }
+    tematica_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    nombre: { type: VARCHAR, size: '250', required: true }    
+    created_at: { type: TIMESTAMP, required: false }        
+    
+  blog_x_tematica:
+    _attributes:   { idMethod: native, phpName: BlogXTematica }    
+    blog_x_tematica_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    blog_id: { type: INTEGER, required: true, foreignTable: blog, foreignReference: blog_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tematica_id: { type: INTEGER, required: true, foreignTable: tematica, foreignReference: tematica_id, onDelete: RESTRICT, onUpdate: RESTRICT }        
+        
+  tipo_post:
+    _attributes:   { idMethod: native, phpName: TipoPost }
+    tipo_post_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    nombre: { type: VARCHAR, size: '250', required: true }    
+    created_at: { type: TIMESTAMP, required: false }            
+
+  post:
+    _attributes:   { idMethod: native, phpName: Post }                 
+    post_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    tipo_post_id: { type: INTEGER, required: true, foreignTable: tipo_post, foreignReference: tipo_post_id, onDelete: RESTRICT, onUpdate: RESTRICT }    
+    user_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    blog_id: { type: INTEGER, required: true, foreignTable: blog, foreignReference: blog_id, onDelete: RESTRICT, onUpdate: RESTRICT }    
+    nombre: { type: VARCHAR, size: '45', required: true }    
+    nota: { type: VARCHAR, size: '250', required: true }            
+    tags: { type: VARCHAR, size: '250', required: true }    
+    visitas: { type: INTEGER, required: true, default:'0' }
+    published_at: { type: TIMESTAMP, required: false }                
+    created_at: { type: TIMESTAMP, required: false }                
+
+  comentario:
+    _attributes:   { idMethod: native, phpName: Comentario }
+    comentario_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    post_id: { type: INTEGER, required: true, foreignTable: post, foreignReference: post_id, onDelete: RESTRICT, onUpdate: RESTRICT }    
+    comentario: { type: LONGVARCHAR }      
+    respuesta: { type: LONGVARCHAR }      
+    created_at: { type: TIMESTAMP, required: false } 
+    
+  respuesta:
+    _attributes:   { idMethod: native, phpName: Respuesta }
+    respuesta_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    post_id: { type: INTEGER, required: true, foreignTable: post, foreignReference: post_id, onDelete: RESTRICT, onUpdate: RESTRICT }    
+    opcion: { type: VARCHAR, size: '250', required: true }            
+    cantidad: { type: VARCHAR, size: '250', required: true }            
+    created_at: { type: TIMESTAMP, required: false }     
+    
+  boletin:
+    _attributes:   { idMethod: native, phpName: Boletin }
+    boletin_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    blog_id: { type: INTEGER, required: true, foreignTable: blog, foreignReference: blog_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    nombre: { type: VARCHAR, size: '250', required: true }  
+    send_at: { type: TIMESTAMP, required: false }     
+    created_at: { type: TIMESTAMP, required: false }     
+                          
+  notas_boletin:
+    _attributes:   { idMethod: native, phpName: NotasBoletin }
+    notas_boletin_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }  
+    boletin_id: { type: INTEGER, required: true, foreignTable: boletin, foreignReference: boletin_id, onDelete: RESTRICT, onUpdate: RESTRICT }      
+    post_id: { type: INTEGER, required: true, foreignTable: post, foreignReference: post_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    es_principal: { type: BOOLEAN, required: true, default: '0', defaultExpr: '0' }    
+    orden: { type: INTEGER, required: true, default:'0' }
+    created_at: { type: TIMESTAMP, required: false }
+    
+        
+        
+     
