@@ -17,6 +17,30 @@
  *
  * @package    propel.generator.plugins.sfGuardPlugin.lib.model
  */
-class PerfilQuery extends BasesfGuardUserQuery {
+class PerfilQuery extends BasesfGuardUserQuery
+{
 
+	static public function getRedesSociales($user_id)
+	{
+		
+		return null;
+	
+	}	
+	
+	static public function getMensajes($user_id)
+	{
+		return null;
+	}
+	
+	static public function getCantidadMensajes($user_id)
+	{
+		return null;
+	}	
+	
+	static public function getCantidadMensajesNuevos($user_id)
+	{
+		return null;
+	}	
+		
+	
 } // sfGuardUserQuery

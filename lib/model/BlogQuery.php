@@ -55,5 +55,15 @@ class BlogQuery extends BaseBlogQuery
                      );
 
     }
+	
+	static public function getTotalVisitas($blog_id)
+	{
+		return null;
+	}
+	
+	static public function getCantidadPost($blog_id)
+	{
+		return null;
+	}
 
 } // BlogQuery

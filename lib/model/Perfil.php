@@ -34,5 +34,5 @@ class Perfil extends PluginsfGuardUser
         $profile    =   $this->getProfile();
         return sprintf('%s %s %s', $profile->getName(), $profile->getLastname(), $profile->getLastname2());
     }
-
-} // Anonimo
+	
+}

@@ -17,6 +17,7 @@
  *
  * @package    propel.generator.lib.model
  */
-class Post extends BasePost {
-
+class Post extends BasePost
+{
+	
 } // Post
