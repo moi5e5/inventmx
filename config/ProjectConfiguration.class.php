@@ -7,7 +7,8 @@ class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
   {
-    $this->enablePlugins('sfPropelPlugin');
+   // $this->enablePlugins('sfPropelPlugin');
     $this->enablePlugins('sfGuardPlugin');
+    $this->enablePlugins('sfPropel15Plugin');
   }
 }

@@ -18,13 +18,13 @@ test:
   propel:
     param:
       classname:  DebugPDO
-
 all:
   propel:
     class:        sfPropelDatabase
     param:
       classname:  PropelPDO
       dsn:        mysql:dbname=inventmx;host=localhost
+      phptype:    mysql
       username:   root
       password:   mysql
       encoding:   utf8

@@ -1,6 +1,6 @@
 propel:
   _attributes:
-    package: lib.model
+    package:lib.model
     
   sf_guard_user_profile:
     _attributes: { idMethod: native, phpName: sfGuardUserProfile }    
@@ -112,7 +112,13 @@ propel:
     es_principal: { type: BOOLEAN, required: true, default: '0', defaultExpr: '0' }    
     orden: { type: INTEGER, required: true, default:'0' }
     created_at: { type: TIMESTAMP, required: false }
-    
+
+  red_social_x_perfil:
+    _attributes:   { idMethod: native, phpName: RedSocialXPerfil }
+    red_social_x_perfil_id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    red_social_id: { type: INTEGER, required: true, foreignTable: red_social, foreignReference: red_social_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    url: { type: VARCHAR, size: '250', required: true }
         
         
      
